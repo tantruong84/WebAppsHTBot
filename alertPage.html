@@ -5,7 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cảnh báo</title>
 </head>
-<body>
+<body style="background-color: #3498db;">
+    <div id="inputFields">
+        <input type="text" id="symbolInput" placeholder="VD: BTCUSDT, ETHUSDT,...">
+        <input type="text" id="intervalInput" placeholder="VD: 1H, 4H, 1D,...">
+        <input type="text" id="changeAmplInput" placeholder="VD: 5, 10, 15,...">
+        <button id="addButton">Thêm</button>
+    </div>
+    
     <h2>Danh sách cảnh báo</h2>
     <table id="alertTable">
         <thead>
@@ -20,13 +27,6 @@
             <!-- Student data will be inserted here -->
         </tbody>
     </table>
-
-    <div id="inputFields">
-        <input type="text" id="symbolInput" placeholder="Cặp giao dịch (BTCUSDT, ETHUSDT,...)">
-        <input type="text" id="intervalInput" placeholder="Khung nến (1H, 4H, 1D, 1W, 1M)">
-        <input type="text" id="changeAmplInput" placeholder="Biên độ thay đổi (5, 10, 15,...)">
-        <button id="addButton">Thêm</button>
-    </div>
 
     <script>
         window.onload = function() {
