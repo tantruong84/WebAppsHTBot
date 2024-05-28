@@ -1,3 +1,16 @@
+// Kiểm tra xem Telegram Web App đã được tải chưa
+let webApp;
+if (window.Telegram.WebApp){
+            webApp = window.Telegram.WebApp;
+}
+// Lấy thông tin người dùng
+const user = webApp.initDataUnsafe.user;
+
+// Gửi một thông điệp đến bot
+webApp.sendData("Hello from my web app!");
+// Thay đổi màu nền của ứng dụng
+webApp.setBackgroundColor("#ffffff");}
+
 window.onload = function() {
             const addButton = document.getElementById('addButton');
             addButton.addEventListener('click', function() {
