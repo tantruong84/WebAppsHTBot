@@ -45,26 +45,19 @@
 
     <script src="script.js"></script>
 				
-				  <script>
+				<script>
         // Kiểm tra xem Telegram Web App đã được tải chưa
-        if (window.Telegram.WebApp) {
+        if (window.Telegram.WebApp){
             const webApp = window.Telegram.WebApp;
             
             // Lấy thông tin người dùng
             const user = webApp.initDataUnsafe.user;
-            console.log("User:", user);
 
-            // Thay đổi màu nền của nút
-            webApp.MainButton.setText("Click me");
-            webApp.MainButton.show();
-
-            // Thêm sự kiện cho nút
-            webApp.MainButton.onClick(() => {
-                webApp.sendData("Button clicked!");
-            });
-        } else {
-            console.log("Telegram Web App is not available.");
-        }
+            // Gửi một thông điệp đến bot
+									   window.Telegram.WebApp.sendData("Hello from my web app!");
+    
+									    // Thay đổi màu nền của ứng dụng
+									   window.Telegram.WebApp.setBackgroundColor("#ffffff");}
     </script>
 </body>
 </html>
