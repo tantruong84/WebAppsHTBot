@@ -44,8 +44,7 @@
 	<button id="saveButton">Lưu</button>
 	
 	<script>    
-		window.onload = function() {
-			const addButton = document.getElementById('addButton');
+		const addButton = document.getElementById('addButton');
 			addButton.addEventListener('click', function() {
 				const symbolInput = document.getElementById('symbolInput').value;
 				const intervalInput = document.getElementById('intervalInput').value;
@@ -73,7 +72,6 @@
                     			alert('Vui lòng điền đủ thông tin cảnh báo.');
                 		}
             		});
-        	};
    	</script>
 	<script>
 		const saveButton = document.getElementById('saveButton');
