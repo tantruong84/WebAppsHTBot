@@ -44,5 +44,27 @@
     </table>
 
     <script src="script.js"></script>
+				
+				  <script>
+        // Kiểm tra xem Telegram Web App đã được tải chưa
+        if (window.Telegram.WebApp) {
+            const webApp = window.Telegram.WebApp;
+            
+            // Lấy thông tin người dùng
+            const user = webApp.initDataUnsafe.user;
+            console.log("User:", user);
+
+            // Thay đổi màu nền của nút
+            webApp.MainButton.setText("Click me");
+            webApp.MainButton.show();
+
+            // Thêm sự kiện cho nút
+            webApp.MainButton.onClick(() => {
+                webApp.sendData("Button clicked!");
+            });
+        } else {
+            console.log("Telegram Web App is not available.");
+        }
+    </script>
 </body>
 </html>
