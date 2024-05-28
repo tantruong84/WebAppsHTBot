@@ -1,50 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Cảnh báo</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>Cảnh báo</title>
 	<style>
 		body{
 			width: 100%;
 		}
 		input, textarea, select {
-    font-size: 16px;
-  }
+			font-size: 16px;
+		}
 	</style>
 </head>
 <body style="background-color: #3498db;">
-    <div id="inputFields">
-		<h1>Thêm cảnh báo mới: <br></h1>
+	<div id="inputFields">
+		<p>Thêm cảnh báo mới:<br></p>
 		<div>
 			<input type="text" id="symbolInput" placeholder="BTCUSDT, ETHUSDT,...">
-</div>
-<div>
-        <input type="text" id="intervalInput" placeholder="1H, 4H, 1D,...">
-</div>
-<div>
-        <input type="text" id="changeAmplInput" placeholder="5, 10, 15,...">
-</div>
-        <button id="addButton">Thêm</button>
-    </div>
-    
-    <h1>Danh sách cảnh báo</h1>
-    <table id="alertTable">
-        <thead>
-            <tr>
-                <th>Cặp giao dịch</th>
-                <th>Khung nến</th>
-                <th>Biên độ thay đổi (%)</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Student data will be inserted here -->
-        </tbody>
-    </table>
-    <button id="saveButton">Lưu</button>
-
-    <script>
+		</div>
+		<div>
+			<input type="text" id="intervalInput" placeholder="1H, 4H, 1D,...">
+		</div>
+		<div>
+			<input type="text" id="changeAmplInput" placeholder="5, 10, 15,...">
+		</div>
+		<button id="addButton">Thêm</button>
+	</div>
+	<p>Danh sách cảnh báo:<br></p>
+	<table id="alertTable">
+		<thead>
+			<tr>
+				<th>Cặp giao dịch</th>
+				<th>Khung nến</th>
+				<th>Biên độ thay đổi (%)</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- Student data will be inserted here -->
+		</tbody>
+	</table>
+	<button id="saveButton">Lưu</button>
+	
+	<script>
 	    const saveButton = document.getElementById('saveButton');
             saveButton.addEventListener('click', function() {
 		    alert('Bạn vừa nhấn nút Save!');
