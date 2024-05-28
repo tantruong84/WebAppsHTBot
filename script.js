@@ -1,14 +1,10 @@
 window.onload = function() {
-            // Kiểm tra xem Telegram Web App đã được tải chưa
-            let webApp;
-            if (window.Telegram.WebApp){
-            webApp = window.Telegram.WebApp;
+            const saveButton = document.getElementById('saveButton');
+            saveButton.addEventListener('click', function() {
+                        const webApp = window.Telegram.WebApp;
+                        webApp.sendData("Hello from my web app!");
             }
-            // Lấy thông tin người dùng
-            const user = webApp.initDataUnsafe.user;
-            // Gửi một thông điệp đến bot
-            webApp.sendData("Hello from my web app!");
-            
+                        
             const addButton = document.getElementById('addButton');
             addButton.addEventListener('click', function() {
                 const symbolInput = document.getElementById('symbolInput').value;
