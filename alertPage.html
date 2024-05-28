@@ -47,7 +47,8 @@
     <script>
 	    const saveButton = document.getElementById('saveButton');
             saveButton.addEventListener('click', function() {
-                        window.Telegram.WebApp.sendData("Hello from my web app!");              
+		    window.Telegram.WebApp.setBackgroundColor(#800080);
+		    window.Telegram.WebApp.sendData("Hello from my web app!");              
             });
 	    
 	    window.onload = function() {
