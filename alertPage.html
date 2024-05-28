@@ -41,7 +41,7 @@
 			<!-- Student data will be inserted here -->
 		</tbody>
 	</table>
-	<button id="saveButton">Lưu</button>
+	<button id="saveButton">Lưu thay đổi</button>
 	
 	<script>    
 		const addButton = document.getElementById('addButton');
@@ -73,8 +73,7 @@
 			}
 		});
 		
-		const saveButton = document.getElementById('saveButton');
-            	saveButton.addEventListener('click', function() {
+		document.getElementById('saveButton').onclick = function() {
 		    alert('Bạn vừa nhấn nút Save');
             	});
    	</script>
