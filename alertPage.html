@@ -42,16 +42,15 @@
             <!-- Student data will be inserted here -->
         </tbody>
     </table>
-				<button id="saveButton">Lưu</button>
+    <button id="saveButton">Lưu</button>
 
     <script>
-				window.onload = function() {
-            const saveButton = document.getElementById('saveButton');
+	    const saveButton = document.getElementById('saveButton');
             saveButton.addEventListener('click', function() {
-                        const webApp = window.Telegram.WebApp;
-                        webApp.sendData("Hello from my web app!");
+                        window.Telegram.WebApp.sendData("Hello from my web app!");              
             });
-                        
+	    
+	    window.onload = function() {
             const addButton = document.getElementById('addButton');
             addButton.addEventListener('click', function() {
                 const symbolInput = document.getElementById('symbolInput').value;
@@ -83,6 +82,6 @@
                 }
             });
         };
-				</script>
+   </script>
 </body>
 </html>
