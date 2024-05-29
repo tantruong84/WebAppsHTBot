@@ -1,81 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<title>Cảnh báo</title>
-	<style>
-		body{
-			width: 100%;
-		}
-		input, textarea, select {
-			font-size: 16px;
-		}
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>User Information Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
-<body style="background-color: #3498db;">
-	<div id="inputFields">
-		<p>Thêm cảnh báo mới:<br></p>
-		<div>
-			<input type="text" id="symbolInput" placeholder="BTCUSDT, ETHUSDT,...">
-		</div>
-		<div>
-			<input type="text" id="intervalInput" placeholder="1H, 4H, 1D,...">
-		</div>
-		<div>
-			<input type="text" id="changeAmplInput" placeholder="5, 10, 15,...">
-		</div>
-		<button id="addButton">Thêm</button>
-	</div>
-	<p>Danh sách cảnh báo:<br></p>
-	<table id="alertTable">
-		<thead>
-			<tr>
-				<th>Cặp giao dịch</th>
-				<th>Khung nến</th>
-				<th>Biên độ thay đổi (%)</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			<!-- Student data will be inserted here -->
-		</tbody>
-	</table>
-	<button id="saveButton">Lưu thay đổi</button>
-	
-	<script>    
-		const addButton = document.getElementById('addButton');
-		addButton.addEventListener('click', function() {
-			const symbolInput = document.getElementById('symbolInput').value;
-			const intervalInput = document.getElementById('intervalInput').value;
-			const changeAmplInput = document.getElementById('changeAmplInput').value;
-			
-			if (symbolInput && intervalInput && changeAmplInput) {
-				const tableBody = document.querySelector('#alertTable tbody');
-				const newRow = document.createElement('tr');
-				newRow.innerHTML = `
-					<td>${symbolInput}</td>
-					<td>${intervalInput}</td>
-					<td>${changeAmplInput}</td>
-					<td><button class="deleteButton">Xóa</button></td>
-				`;
-				tableBody.appendChild(newRow);
-				const deleteButton = newRow.querySelector('.deleteButton');
-				deleteButton.addEventListener('click', function() {
-					newRow.remove();
-				});
-				// Clear input fields after adding the new row
-				document.getElementById('symbolInput').value = '';
-				document.getElementById('intervalInput').value = '';
-				document.getElementById('changeAmplInput').value = '';
-			} else {
-				alert('Vui lòng điền đủ thông tin cảnh báo.');
-			}
-		});
-		
-		document.getElementById('saveButton').onclick = function() {
-			Telegram.WebApp.sendData('Hello!');
-		};
-   	</script>
+<body>
+    <h1>Enter User Information</h1>
+    <form id="userForm">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <button type="button" onclick="sendData()">Save</button>
+    </form>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        function sendData() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const data = JSON.stringify({ name, email });
+
+            Telegram.WebApp.sendData(data); // Gửi dữ liệu đến bot Telegram
+        }
+
+        Telegram.WebApp.ready();
+    </script>
 </body>
 </html>
