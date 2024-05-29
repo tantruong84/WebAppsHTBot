@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>User Information Form</title>
+    <title>Cảnh báo</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -31,25 +31,31 @@
     </style>
 </head>
 <body>
-    <h1>Enter User Information</h1>
+    <h1>Thêm cảnh báo</h1>
     <form id="userForm">
         <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+            <label for="symbol">Cặp giao dịch:</label>
+            <input type="text" id="symbol" name="symbol" required>
         </div>
         <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <label for="interval">Khung nến:</label>
+            <input type="text" id="interval" name="interval" required>
         </div>
-        <button type="button" onclick="sendData()">Save</button>
+        <div class="form-group">
+            <label for="ampl">Biên độ (%):</label>
+            <input type="number" id="ampl" name="ampl" required>
+        </div>
+        <button type="button" onclick="saveData()">Save</button>
     </form>
 
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
-        function sendData() {
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const data = JSON.stringify({ name, email });
+        function saveData() {
+            const act = 'updateAlert';
+            const symbol = document.getElementById('symbol').value;
+            const interval = document.getElementById('interval').value;
+            const ampl = document.getElementById('ampl').value;
+            const data = JSON.stringify({ act, symbol, interval, ampl});
 
             Telegram.WebApp.sendData(data); // Gửi dữ liệu đến bot Telegram
         }
