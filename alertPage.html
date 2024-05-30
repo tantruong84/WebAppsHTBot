@@ -10,6 +10,10 @@
             font-family: Arial, sans-serif;
             margin: 50px;
         }
+        h1 {
+            color: blue;
+            font-size: 18px;
+        }
         .form-group {
             margin-bottom: 15px;
         }
@@ -30,32 +34,89 @@
             border: none;
             cursor: pointer;
         }
+        table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        button {
+            padding: 8px 12px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #d32f2f;
+        }
     </style>
 </head>
 <body>
     <h1>Thêm cảnh báo</h1>
-    <form id="userForm">
-        <div class="form-group">
-            <label for="symbol">Cặp giao dịch:</label>
-            <input type="text" id="symbol" name="symbol" required>
-        </div>
-        <div class="form-group">
-            <label for="interval">Khung nến:</label>
-            <input type="text" id="interval" name="interval" required>
-        </div>
-        <div class="form-group">
-            <label for="ampl">Biên độ (%):</label>
-            <input type="number" id="ampl" name="ampl" required>
-        </div>
-        <button type="button" onclick="saveData()">Save</button>
-    </form>
+        <form id="userForm">
+            <div class="form-group">
+                <label for="symbol">Cặp giao dịch:</label>
+                <input type="text" id="symbol" name="symbol" required>
+            </div>
+            <div class="form-group">
+                <label for="interval">Khung nến:</label>
+                <input type="text" id="interval" name="interval" required>
+            </div>
+            <div class="form-group">
+                <label for="ampl">Biên độ (%):</label>
+                <input type="number" id="ampl" name="ampl" required>
+            </div>
+            <button id="addButton" type="button" onclick="addAlert()">Thêm</button>
+
+        <h1>Danh sách cảnh báo</h1>
+
+        <table id="alertsTable">
+            <thead>
+                <tr>
+                    <th>Cặp giao dịch</th>
+                    <th>Khung nến</th>
+                    <th>Biên độ</th>
+                    <th>Xoá</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>BTC/USD</td>
+                    <td>1H</td>
+                    <td>5%</td>
+                    <td><button onclick="deleteRow(this)">Xoá</button></td>
+                </tr>
+                <tr>
+                    <td>ETH/USD</td>
+                    <td>4H</td>
+                    <td>3%</td>
+                    <td><button onclick="deleteRow(this)">Xoá</button></td>
+                </tr>
+                <tr>
+                    <td>LTC/USD</td>
+                    <td>1D</td>
+                    <td>2%</td>
+                    <td><button onclick="deleteRow(this)">Xoá</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button id="saveButton" type="button" onclick="saveData()">Save</button>
+        </form>
 
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         function saveData() {
             const act = 'updateAlert';
             const symbol = document.getElementById('symbol').value;
-            const interval = document.getElementById('interval').value;
+	            const interval = document.getElementById('interval').value;
             const ampl = document.getElementById('ampl').value;
             const data = JSON.stringify({ act, symbol, interval, ampl});
 
@@ -63,6 +124,56 @@
         }
 
         Telegram.WebApp.ready();
+        
     </script>
+    <script>
+        function deleteRow(button) {
+            // Find the row containing the button and remove it
+            const row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+
+        function addAlert() {
+        // Get input values
+        const symbol = document.getElementById('symbol').value;
+        const interval = document.getElementById('interval').value;
+        const ampl = document.getElementById('ampl').value;
+
+        // Validate inputs
+        if (symbol === '' || interval === '' || ampl === '') {
+            alert('Vui lòng điền đầy đủ thông tin');
+            return;
+        }
+
+        // Create a new row
+        const table = document.getElementById('alertsTable').getElementsByTagName('tbody')[0];
+        const newRow = table.insertRow();
+
+        // Insert cells
+        const cell1 = newRow.insertCell(0);
+        const cell2 = newRow.insertCell(1);
+        const cell3 = newRow.insertCell(2);
+        const cell4 = newRow.insertCell(3);
+
+        // Add values to the cells
+        cell1.textContent = symbol;
+        cell2.textContent = interval;
+        cell3.textContent = ampl;
+
+        // Create delete button
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Xoá';
+        deleteBtn.className = 'delete-btn';
+        deleteBtn.onclick = function() {
+            deleteRow(deleteBtn);
+        };
+        cell4.appendChild(deleteBtn);
+
+        // Clear input fields
+        document.getElementById('symbol').value = '';
+        document.getElementById('interval').value = '';
+        document.getElementById('ampl').value = '';
+    }
+</script>
 </body>
 </html>
