@@ -110,7 +110,7 @@
 
         <button id="saveButton" type="button" onclick="saveData()">Save</button>
         </form>
-
+        <p id="webviewData"></p>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         function saveData() {
@@ -125,6 +125,7 @@
 
         Telegram.WebApp.ready();
         
+        document.getElementById('webviewData').innerHTML = JSON.stringify(Telegram.WebApp.initDataUnsafe, null, 2);
     </script>
     <script>
         function deleteRow(button) {
