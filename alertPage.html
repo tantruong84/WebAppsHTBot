@@ -88,19 +88,19 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>BTC/USD</td>
+                    <td>BTCUSDT</td>
                     <td>1H</td>
                     <td>5%</td>
                     <td><button onclick="deleteRow(this)">Xoá</button></td>
                 </tr>
                 <tr>
-                    <td>ETH/USD</td>
+                    <td>ETHUSDT</td>
                     <td>4H</td>
                     <td>3%</td>
                     <td><button onclick="deleteRow(this)">Xoá</button></td>
                 </tr>
                 <tr>
-                    <td>LTC/USD</td>
+                    <td>LTCUSDT</td>
                     <td>1D</td>
                     <td>2%</td>
                     <td><button onclick="deleteRow(this)">Xoá</button></td>
@@ -128,6 +128,22 @@
         document.getElementById('webviewData').innerHTML = JSON.stringify(Telegram.WebApp.initData, null, 2);
     </script>
     <script>
+	function getQueryParams(){
+		const urlParams = new URLSearchParams(window.location.search);
+		return {
+			symbol: urlParams.get('symbol'),
+			interval: urlParams.get('interval'),
+			ampl: urlParams.get('ampl')
+		};
+	}
+
+	function fillForm(){
+		const params = getQueryParams();
+		document.getElementById('symbol').value = params.symbol || '';
+		document.getElementById('interval').value = params.interval || '';
+		document.getElementById('ampl').value = params.ampl || '';
+	}
+	    
         function deleteRow(button) {
             // Find the row containing the button and remove it
             const row = button.parentNode.parentNode;
