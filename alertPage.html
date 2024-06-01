@@ -125,7 +125,7 @@
 
         Telegram.WebApp.ready();
         
-        document.getElementById('webviewData').innerHTML = JSON.stringify(Telegram.WebApp.initData, null, 2);
+        //document.getElementById('webviewData').innerHTML = JSON.stringify(Telegram.WebApp.initData, null, 2);
     </script>
     <script>
 	function getQueryParams(){
@@ -139,6 +139,7 @@
 		const params = getQueryParams();
 		if(params.data){
 			const jsonData = JSON.parse(decodeURIComponent(params.data));
+			document.getElementById('webviewData').innerHTML = JSON.stringify(jsonData, null, 2);
 			jsonData.alerts.forEach((alert) => {
 				if(alert){
 					// Create a new row
