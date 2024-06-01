@@ -131,17 +131,42 @@
 	function getQueryParams(){
 		const urlParams = new URLSearchParams(window.location.search);
 		return {
-			symbol: urlParams.get('symbol'),
-			interval: urlParams.get('interval'),
-			ampl: urlParams.get('ampl')
+			data: urlParams.get('data')
 		};
 	}
 
 	function fillForm(){
 		const params = getQueryParams();
-		document.getElementById('symbol').value = params.symbol || '';
-		document.getElementById('interval').value = params.interval || '';
-		document.getElementById('ampl').value = params.ampl || '';
+		if(params.data){
+			const jsonData = JSON.parse(decodeURIComponent(params.data));
+			jsonData.alerts.forEach((alert) => {
+				if(alert){
+					// Create a new row
+				        const table = document.getElementById('alertsTable').getElementsByTagName('tbody')[0];
+				        const newRow = table.insertRow();
+				
+				        // Insert cells
+				        const cell1 = newRow.insertCell(0);
+				        const cell2 = newRow.insertCell(1);
+				        const cell3 = newRow.insertCell(2);
+				        const cell4 = newRow.insertCell(3);
+				
+				        // Add values to the cells
+				        cell1.textContent = alert.symbol;
+				        cell2.textContent = alert.interval;
+				        cell3.textContent = alert.ampl;
+				
+				        // Create delete button
+				        const deleteBtn = document.createElement('button');
+				        deleteBtn.textContent = 'Xoá';
+				        deleteBtn.className = 'delete-btn';
+				        deleteBtn.onclick = function() {
+				        deleteRow(deleteBtn);
+				        };
+				        cell4.appendChild(deleteBtn);
+				}
+			})
+		}
 	}
 
 	window.onload = fillForm;
