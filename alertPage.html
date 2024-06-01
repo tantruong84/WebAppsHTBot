@@ -28,16 +28,16 @@
             box-sizing: border-box;
         }
         button {
-            padding: 10px 15px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
+		padding: 10px 15px;
+	        background-color: #4CAF50;
+	        color: white;
+		border: none;
+	        cursor: pointer;
         }
         table {
                 width: 100%;
                 border-collapse: collapse;
-            }
+        }
         th, td {
             padding: 12px;
             border: 1px solid #ddd;
@@ -47,11 +47,12 @@
             background-color: #f2f2f2;
         }
         button {
-            padding: 8px 12px;
-            background-color: #f44336;
-            color: white;
-            border: none;
-            cursor: pointer;
+	    padding: 8px 12px;
+	    background-color: #f44336;
+	    color: white;
+	    border: none;
+	    cursor: pointer;
+	    margin: 20px;
         }
         button:hover {
             background-color: #d32f2f;
@@ -87,24 +88,14 @@
                 </tr>
             </thead>
             <tbody>
+		/*
                 <tr>
                     <td>BTCUSDT</td>
                     <td>1H</td>
-                    <td>5%</td>
+                    <td>5</td>
                     <td><button onclick="deleteRow(this)">Xoá</button></td>
                 </tr>
-                <tr>
-                    <td>ETHUSDT</td>
-                    <td>4H</td>
-                    <td>3%</td>
-                    <td><button onclick="deleteRow(this)">Xoá</button></td>
-                </tr>
-                <tr>
-                    <td>LTCUSDT</td>
-                    <td>1D</td>
-                    <td>2%</td>
-                    <td><button onclick="deleteRow(this)">Xoá</button></td>
-                </tr>
+		*/
             </tbody>
         </table>
 
@@ -114,15 +105,29 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         function saveData() {
-            const act = 'updateAlert';
-            const symbol = document.getElementById('symbol').value;
-	            const interval = document.getElementById('interval').value;
-            const ampl = document.getElementById('ampl').value;
-            const data = JSON.stringify({ act, symbol, interval, ampl});
+		const act = 'updateAlert';
+		const alerts = tableToJson();
+		const data = JSON.stringify({ act, alerts});
 
             Telegram.WebApp.sendData(data); // Gửi dữ liệu đến bot Telegram
         }
 
+	function tableToJson(){
+		const table = document.getElementById('alertsTable');
+		const rows = table.getElementsByTagName('tr');
+		const alerts = [];
+		for(let i = 1; i < rows.length; i++){
+			const cells = rows[i].getElementsByTagName('td');
+			const alert = {
+				symbol: cells[0].textContent,
+				interval: cells[1].textContent,
+				ampl: parseInt(cells[2].textContent)
+			};
+			alerts.push(alert);
+		}
+		return alerts;
+	}
+	    
         Telegram.WebApp.ready();
         
         //document.getElementById('webviewData').innerHTML = JSON.stringify(Telegram.WebApp.initData, null, 2);
