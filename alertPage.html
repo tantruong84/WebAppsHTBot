@@ -52,7 +52,6 @@
 	    color: white;
 	    border: none;
 	    cursor: pointer;
-	    margin: 20px;
         }
         button:hover {
             background-color: #d32f2f;
@@ -88,21 +87,16 @@
                 </tr>
             </thead>
             <tbody>
-		/*
-                <tr>
-                    <td>BTCUSDT</td>
-                    <td>1H</td>
-                    <td>5</td>
-                    <td><button onclick="deleteRow(this)">Xoá</button></td>
-                </tr>
-		*/
+		
             </tbody>
         </table>
 
         <button id="saveButton" type="button" onclick="saveData()">Save</button>
         </form>
         <p id="webviewData"></p>
+	
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+	
     <script>
         function saveData() {
 		const act = 'updateAlert';
@@ -132,6 +126,7 @@
         
         //document.getElementById('webviewData').innerHTML = JSON.stringify(Telegram.WebApp.initData, null, 2);
     </script>
+	
     <script>
 	function getQueryParams(){
 		const urlParams = new URLSearchParams(window.location.search);
