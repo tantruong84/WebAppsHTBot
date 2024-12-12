@@ -66,7 +66,7 @@
     </select>
     <div id="question">Upload files to start</div>
     <div id="answer"></div>
-    <button id="next-btn" onclick="getNextQuestion()" disabled>Get Next Question</button>
+    <button id="next-btn" onclick="getNextQuestion()" disabled>Start</button>
     <div id="counter">0/0 questions answered</div>
 </div>
 
@@ -149,7 +149,7 @@
         button.textContent = 'Show Answer';
         button.onclick = () => {
             answerElement.style.display = 'block';
-            button.textContent = 'Get Next Question';
+            button.textContent = 'Next Question';
             button.onclick = getNextQuestion;
         };
     }
